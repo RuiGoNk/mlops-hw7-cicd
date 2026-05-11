@@ -1,0 +1,16 @@
+version: '3.8'
+
+services:
+  app-blue:
+    build: .
+    image: ml-service:blue
+    container_name: ml-app-blue
+    environment:
+      - MODEL_VERSION=v1.0.0
+    ports:
+      - "8081:8000"
+    healthcheck:
+      test: ["CMD", "python", "-c", "print('ok')"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
