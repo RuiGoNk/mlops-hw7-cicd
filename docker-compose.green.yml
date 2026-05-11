@@ -1,0 +1,16 @@
+version: '3.8'
+
+services:
+  app-green:
+    build: .
+    image: ml-service:green
+    container_name: ml-app-green
+    environment:
+      - MODEL_VERSION=v1.1.0
+    ports:
+      - "8082:8000"
+    healthcheck:
+      test: ["CMD", "python", "-c", "print('ok')"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
